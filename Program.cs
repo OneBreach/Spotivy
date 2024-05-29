@@ -1,10 +1,17 @@
 ﻿namespace Spotivy
 {
-    internal class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var user = new User("John");
+            var artist = new Artist("The Beatles");
+            var song = new Song("Hey Jude", ["The Beatles"], "Rock");
+            var playlist = new Playlist("My Playlist");
+
+
+
+
         }
     }
 }

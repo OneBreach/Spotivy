@@ -3,15 +3,20 @@ using System.Collections.Generic;
 
 namespace Spotivy
 {
-    public class User(string name)
+    public class User(string name, List<Playlist> playlists, List<User> friends)
     {
-        public string Name { get; set; } = name;
-        public List<Playlist> Playlists { get; set; } = new List<Playlist>();
-        public List<User> Friends { get; set; } = new List<User>();
-
-        public void CreatePlaylist(string name)
+        public User(string name) : this(name, [], [])
         {
-            Playlists.Add(new Playlist(name));
+            Name = name;
+        }
+
+        public string Name { get; set; } = name;
+        public List<Playlist> Playlists { get; set; } = playlists;
+        public List<User> Friends { get; set; } = friends;
+
+        public void CreatePlaylist(string name, List<Song> songs)
+        {
+            Playlists.Add(new Playlist(name, songs));
         }
 
         public void AddSongToPlaylist(string playlistName, Song song)

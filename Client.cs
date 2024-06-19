@@ -1,58 +1,83 @@
-namespace Spotivy;
+using System;
+using System.Collections.Generic;
 
-
-public class Client(User mainUser )
+namespace Spotivy
 {
-    public User MainUser { get; private set; } = mainUser;
-    public List<Song> Queues { get; set; } = [];
-
-
-
-    public void AddSongToQueue(Song song)
+    public class Client(User mainUser)
     {
-        Queues.Add(song);
-    }
+        public User MainUser { get; private set; } = mainUser;
 
-    public void RemoveSongFromQueue(Song song)
-    {
-        Queues.Remove(song);
-    }
-
-    public void PlaySong(Song song)
-    {
-        Console.WriteLine($"Playing {song.Title}");
-    }
-
-    public void PlayNextSong()
-    {
-        if (Queues.Count > 0)
+        public void CreatePlaylist(string name)
         {
-            PlaySong(Queues[0]);
-            Queues.RemoveAt(0);
+            MainUser.CreatePlaylist(name);
         }
-    }
 
+        public void AddSongToPlaylist(string playlistName, Song song)
+        {
+            MainUser.AddSongToPlaylist(playlistName, song);
+        }
 
-    public void AddSongToPlaylist(Song song, Playlist playlist)
-    {
-        playlist.AddSong(song);
-    }
+        public void PlayPlaylist(string playlistName)
+        {
+            MainUser.PlayPlaylist(playlistName);
+        }
 
-    public void RemoveSongFromPlaylist(Song song, Playlist playlist)
-    {
-        playlist.RemoveSong(song);
-    }
+        public void ViewFriends()
+        {
+            MainUser.ViewFriends();
+        }
 
+        public void AddFriend(User friend)
+        {
+            MainUser.AddFriend(friend);
+        }
 
+        public void RemoveFriend(User friend)
+        {
+            MainUser.RemoveFriend(friend);
+        }
 
-    public void AddFriend(User friend)
-    {
-        MainUser.AddFriend(friend);
-    }
+        public void ViewFriendPlaylists(User friend)
+        {
+            MainUser.ViewFriendPlaylists(friend);
+        }
 
+        public void ViewAlbums()
+        {
+            var albums = GetAlbums();
+            Console.WriteLine("Albums:");
+            foreach (var album in albums)
+            {
+                Console.WriteLine($"- {album.Title}");
+            }
+        }
 
-    public void RemoveFriend(User friend)
-    {
-        MainUser.RemoveFriend(friend);
+        public void ViewArtists()
+        {
+            var artists = GetArtists();
+            Console.WriteLine("Artists:");
+            foreach (var artist in artists)
+            {
+                Console.WriteLine($"- {artist.Name}");
+            }
+        }
+
+        private List<Album> GetAlbums()
+        {
+            return
+            [
+                new Album("Album1", [], []),
+                new Album("Album2", [], [])
+            ];
+        }
+
+        private List<Artist> GetArtists()
+        {
+            return
+            [
+                new Artist("Killer Kamal"),
+                new Artist("Pietje Bel")
+            ];
+        }
     }
 }

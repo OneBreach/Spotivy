@@ -66,8 +66,8 @@ namespace Spotivy
         {
             return
             [
-                new Album("Album1", [], []),
-                new Album("Album2", [], [])
+                new Album("Album1", []),
+                new Album("Album2", [])
             ];
         }
 

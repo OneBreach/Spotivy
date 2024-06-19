@@ -5,11 +5,11 @@ namespace Spotivy
 {
     public class Client(User mainUser)
     {
-        public User MainUser { get; private set; } = mainUser;
+        public User MainUser { get; set; } = mainUser;
 
-        public void CreatePlaylist(string name)
+        public void CreatePlaylist(string name, List<Song> songs)
         {
-            MainUser.CreatePlaylist(name);
+            MainUser.CreatePlaylist(name, songs);
         }
 
         public void AddSongToPlaylist(string playlistName, Song song)

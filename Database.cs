@@ -1,6 +1,6 @@
 namespace Spotivy;
 
-public static class Database
+public  class Database
 {
     public static List<User> GetPeople()
     {

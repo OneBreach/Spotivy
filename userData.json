@@ -1,0 +1,54 @@
+[
+  {
+    "Name": "John",
+    "Playlists": [
+      {
+        "Name": "John's Playlist",
+        "Songs": [
+          {
+            "Title": "The Less I Know The Better",
+            "Artists": [
+              "Tame Impala"
+            ],
+            "Genre": "Psychedelic Rock",
+            "Duration": "3:36"
+          },
+          {
+            "Title": "The Less I Know The Better",
+            "Artists": [
+              "Tame Impala"
+            ],
+            "Genre": "Psychedelic Rock",
+            "Duration": "3:36"
+          }
+        ]
+      }
+    ],
+    "Friends": [
+      {
+        "Name": "Jane"
+      },
+      {
+        "Name": "Jake"
+      },
+      {
+        "Name": "Jill"
+      }
+    ]
+  },
+  {
+    "Name": "Jane",
+    "Playlists": [],
+    "Friends": []
+  },
+  {
+    "Name": "Jake",
+    "Playlists": [],
+    "Friends": []
+  },
+  {
+    "Name": "Jill",
+    "Playlists": [],
+    "Friends": []
+  }
+]

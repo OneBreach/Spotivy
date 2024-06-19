@@ -1,17 +1,31 @@
-﻿namespace Spotivy
+﻿namespace Spotivy;
+
+using System.IO;
+using System.Text.Json;
+using System.Collections.Generic;
+
+internal static class Program
 {
-    internal static class Program
+    private static void Main(string[] args)
     {
-        private static void Main(string[] args)
-        {
-            var user = new User("John");
-            var artist = new Artist("The Beatles");
-            var song = new Song("Hey Jude", ["The Beatles"], "Rock");
-            var playlist = new Playlist("My Playlist");
+        Console.WriteLine("Welcome to Spotivy!");
+        Console.WriteLine("Please enter your name:");
+        var name = Console.ReadLine();
+
+        var userDataJson = File.ReadAllText("userData.json");
+        var userData = JsonSerializer.Deserialize<List<User>>(userDataJson);
+        Console.WriteLine(userDataJson);
 
 
 
+        if (userData != null)
+            foreach (var user in userData.Where(user => user.Name == name))
+            {
+                Console.WriteLine($"Welcome back, {user.Name}!");
+                return;
+            }
 
-        }
+
+        Console.WriteLine($"Welcome, {name}!");
     }
 }

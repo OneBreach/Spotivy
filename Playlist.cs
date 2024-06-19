@@ -1,9 +1,9 @@
 namespace Spotivy;
 
-public class Playlist(string name, List<Song> songs)
+public class Playlist(string name)
 {
     public string Name { get; set; } = name;
-    private List<Song> Songs { get; set; } = songs;
+    private List<Song> Songs { get; set; } = [];
 
     public void AddSong(Song song)
     {
@@ -13,6 +13,15 @@ public class Playlist(string name, List<Song> songs)
     public void RemoveSong(Song song)
     {
         Songs.Remove(song);
+    }
+
+    public void Play()
+    {
+        Console.WriteLine($"Playing playlist '{Name}':");
+        foreach (var song in Songs)
+        {
+            Console.WriteLine($"- {song.Title}");
+        }
     }
 
 

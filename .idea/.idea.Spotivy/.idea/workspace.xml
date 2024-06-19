@@ -7,7 +7,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="86217c46-0b3d-4f2b-8de4-01f980d1fe14" name="Changes" comment="" />
+    <list default="true" id="86217c46-0b3d-4f2b-8de4-01f980d1fe14" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Spotivy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Spotivy/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Playlist.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Playlist.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/User.cs" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -45,7 +51,7 @@
     ".NET Project.Spotivy.executor": "Run",
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "11-data-voor-nummers-toevoegen",
+    "git-widget-placeholder": "23-classes-user",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
@@ -98,6 +104,7 @@
       <workItem from="1717576088919" duration="1409000" />
       <workItem from="1718785586828" duration="6000" />
       <workItem from="1718785611033" duration="235000" />
+      <workItem from="1718786808742" duration="1426000" />
     </task>
     <servers />
   </component>
@@ -105,6 +112,17 @@
     <option name="version" value="3" />
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />

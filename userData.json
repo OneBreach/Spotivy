@@ -7,17 +7,13 @@
         "Songs": [
           {
             "Title": "The Less I Know The Better",
-            "Artists": [
-              "Tame Impala"
-            ],
+            "Artists": ["Tame Impala"],
             "Genre": "Psychedelic Rock",
             "Duration": "3:36"
           },
           {
             "Title": "The Less I Know The Better",
-            "Artists": [
-              "Tame Impala"
-            ],
+            "Artists": ["Tame Impala"],
             "Genre": "Psychedelic Rock",
             "Duration": "3:36"
           }
@@ -38,7 +34,31 @@
   },
   {
     "Name": "Jane",
-    "Playlists": [],
+    "Playlists": [
+      {
+        "Name": "Jane's Playlist",
+        "Songs": [
+          {
+            "Title": "The Less I Know The Better",
+            "Artists": ["Tame Impala"],
+            "Genre": "Psychedelic Rock",
+            "Duration": "3:36"
+          },
+          {
+            "Title": "Blinding Lights",
+            "Artists": ["The Weeknd"],
+            "Genre": "Synthwave",
+            "Duration": "3:20"
+          },
+          {
+            "Title": "Watermelon Sugar",
+            "Artists": ["Harry Styles"],
+            "Genre": "Pop Rock",
+            "Duration": "2:54"
+          }
+        ]
+      }
+    ],
     "Friends": []
   },
   {

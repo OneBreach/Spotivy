@@ -14,5 +14,4 @@ public class Song(string title, string[] artists, string genre, int duration)
         return this;
     }
 
-
 }

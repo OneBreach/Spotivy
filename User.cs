@@ -1,5 +1,4 @@
 namespace Spotivy;
-
 public class User(string name, List<Playlist> playlists, List<User> friends)
 {
     public string Name { get; set; } = name;

@@ -63,12 +63,68 @@
   },
   {
     "Name": "Jake",
-    "Playlists": [],
-    "Friends": []
+"Playlists": [
+    {
+      "Name": "Jake's Playlist",
+      "Songs": [
+        {
+          "Title": "Space Oddity",
+          "Artists": ["David Bowie"],
+          "Genre": "Rock",
+          "Duration": "5:18"
+        },
+        {
+          "Title": "Electric Feel",
+          "Artists": ["MGMT"],
+          "Genre": "Indie Rock",
+          "Duration": "3:49"
+        },
+        {
+          "Title": "Summertime Sadness",
+          "Artists": ["Lana Del Rey"],
+          "Genre": "Indie Pop",
+          "Duration": "4:25"
+        }
+      ]
+    }
+  ],
+    "Friends": [
+      {
+        "Name": "Jane"
+      }
+    ]
   },
   {
     "Name": "Jill",
-    "Playlists": [],
-    "Friends": []
+    "Playlists": [
+      {
+        "Name": "Jill's Playlist",
+        "Songs": [
+          {
+            "Title": "Dreams",
+            "Artists": ["Fleetwood Mac"],
+            "Genre": "Soft Rock",
+            "Duration": "4:17"
+          },
+          {
+            "Title": "Bad Guy",
+            "Artists": ["Billie Eilish"],
+            "Genre": "Electropop",
+            "Duration": "3:14"
+          },
+          {
+            "Title": "Take On Me",
+            "Artists": ["a-ha"],
+            "Genre": "Synthpop",
+            "Duration": "3:45"
+          }
+        ]
+      }
+    ],
+    "Friends": [
+      {
+        "Name": "Jane"
+      }
+    ]
   }
 ]

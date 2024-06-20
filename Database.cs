@@ -16,11 +16,11 @@ public  class Database
                                 artists: ["Tame Impala"],
                                 genre: "Psychedelic Rock",
                                 duration: 134),
-
-                            new Song(title: "The Less I Know The Better",
-                                artists: ["Tame Impala"],
-                                genre: "Psychedelic Rock",
-                                duration: 150)
+                            
+                            new Song(title: "Blinding Lights",
+                                artists: ["The Weeknd"],
+                                genre: "Synthwave",
+                                duration: 424),
                         ])
                 ],
                 friends:
@@ -81,9 +81,11 @@ public  class Database
                                 duration: 265)
                         ])
                 ],
-                friends: [new User(name: "Jane")]
+                friends: 
+                [
+                    new User(name: "Jane")
+                ]
             ),
-
 
             new User(name: "Jill",
                 playlists:
@@ -107,7 +109,11 @@ public  class Database
                                 duration: 225)
                         ])
                 ],
-                friends: new List<User> { new User(name: "Jane") }
+                friends: 
+                new List<User> 
+                [ 
+                    new User(name: "Jane") 
+                ]
             )
         ];
     }
@@ -162,11 +168,12 @@ public  class Database
                 duration: 225)
         };
     }
+
     public static List<Album> GetAlbums()
     {
         return
         [
-            new Album(title: "The Dark Side of the Moon",
+            new Album(title: "The Dark Side of the Moon 1",
                 songs:
                 [
                     new Song(title: "Speak to Me",
@@ -220,7 +227,7 @@ public  class Database
                         genre: "Progressive Rock")
                 ]),
 
-            new Album(title: "The Dark Side of the Moon",
+            new Album(title: "The Dark Side of the Moon 2",
                 songs:
                 [
                     new Song(title: "In the Flesh?",

@@ -4,6 +4,7 @@ public class Playlist(string name, List<Song> songs)
 {
     public string Name { get; set; } = name;
     public List<Song> Songs { get; set; } = songs;
+    
     public void AddSong(Song song)
     {
         Songs.Add(song);
@@ -21,8 +22,6 @@ public class Playlist(string name, List<Song> songs)
         {
             Console.WriteLine($"- {song.Title}");
         }
+
     }
-
-
-
-}
+    }

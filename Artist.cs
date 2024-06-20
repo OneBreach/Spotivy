@@ -6,12 +6,12 @@ public class Artist(string name)
     public List<Album> Albums { get; set; } = [];
     public List<Song> Songs { get; set; } = [];
 
-    public Artist(string name, List<Album> albums, List<Song> songs)
-    {
-        Name = name;
-        Albums = albums;
-        Songs = songs;
-    }
+    // public Artist(string name, List<Album> albums, List<Song> songs)
+    // {
+    //     Name = name;
+    //     Albums = albums;
+    //     Songs = songs;
+    // }
 
     public void ViewWorks()
     {

@@ -6,13 +6,6 @@ public class Song(string title, string[] artists, string genre, int duration)
     public string[] Artists { get; set; } = artists;
     public string Genre { get; set; } = genre;
     public int Duration { get; set; } = duration;
-    
-    public Song(string title, string[] artists, string genre)
-    {
-        Title = title;
-        Artists = artists;
-        Genre = genre;
-    }
 
     public void Play()
     {

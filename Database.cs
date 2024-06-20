@@ -111,9 +111,9 @@ public  class Database
                 ],
                 friends: 
                 new List<User> 
-                [ 
+                {
                     new User(name: "Jane") 
-                ]
+                }
             )
         ];
     }

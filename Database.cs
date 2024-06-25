@@ -53,10 +53,7 @@ public  class Database
                                 duration: 111)
                         ])
                 ],
-                friends: new List<User>
-                {
-                    Capacity = 0
-                }),
+                friends: []),
 
 
             new User(name: "Jake",
@@ -109,64 +106,69 @@ public  class Database
                                 duration: 225)
                         ])
                 ],
-                friends: 
-                new List<User> 
-                {
-                    new User(name: "Jane") 
-                }
+                friends:
+                [new User(name: "Jane")]
             )
         ];
     }
 
     public static List<Song> GetSongs()
     {
-        return new List<Song>
-        {
+        return
+        [
             new Song(title: "The Less I Know The Better",
-                artists: [ "Tame Impala" ],
+                artists: ["Tame Impala"],
                 genre: "Psychedelic Rock",
                 duration: 134),
 
+
             new Song(title: "Blinding Lights",
-                artists:[ "The Weeknd" ],
+                artists: ["The Weeknd"],
                 genre: "Synthwave",
                 duration: 424),
 
+
             new Song(title: "Watermelon Sugar",
-                artists:[ "Harry Styles"],
+                artists: ["Harry Styles"],
                 genre: "Pop Rock",
                 duration: 111),
 
+
             new Song(title: "Space Oddity",
-                artists:[ "David Bowie" ],
+                artists: ["David Bowie"],
                 genre: "Rock",
                 duration: 318),
 
+
             new Song(title: "Electric Feel",
-                artists:[ "MGMT" ],
+                artists: ["MGMT"],
                 genre: "Indie Rock",
                 duration: 229),
 
+
             new Song(title: "Summertime Sadness",
-                artists:[ "Lana Del Rey"],
+                artists: ["Lana Del Rey"],
                 genre: "Indie Pop",
                 duration: 265),
 
+
             new Song(title: "Dreams",
-                artists:[ "Fleetwood Mac" ],
+                artists: ["Fleetwood Mac"],
                 genre: "Soft Rock",
                 duration: 257),
 
+
             new Song(title: "Bad Guy",
-                artists:[ "Billie Eilish"],
+                artists: ["Billie Eilish"],
                 genre: "Electropop",
                 duration: 194),
 
+
             new Song(title: "Take On Me",
-                artists:[ "a-ha" ],
+                artists: ["a-ha"],
                 genre: "Synthpop",
                 duration: 225)
-        };
+        ];
     }
 
     public static List<Album> GetAlbums()

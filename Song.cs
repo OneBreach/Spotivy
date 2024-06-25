@@ -22,10 +22,4 @@ public class Song(string title, string[] artists, string genre, int duration)
         Console.WriteLine($"Skipping song '{Title}'.");
     }
 
-
-    /*    public Song GetSong()
-        {
-            return this;
-        }*/
-
 }

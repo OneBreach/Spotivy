@@ -1,130 +1,188 @@
 ﻿namespace Spotivy;
 
-
-internal static  class Program
+internal static class Program
 {
     public static Database Database { get; private set; } = new Database();
-    public static Client Client { get; private set; } = (StartClient());
+    public static Client Client { get; private set; } = null!;
 
     public static void Main(string[] args)
     {
-
-
-        StartClient();
-
+        Client = StartClient();
         while (true)
         {
             MainMenu();
         }
     }
 
+
     private static Client StartClient()
     {
+        Console.WriteLine("Welcome to Spotivy!");
+        Console.WriteLine("Select your user:");
+        Utility.PressAnyKeyToContinue();
         var userData = Database.GetPeople();
-        var currentIndex = 0;
-        while (true)
+        var userNames = userData.Select(u => u.Name).ToList();
+        var selectedUserName = Utility.SelectFromList(userNames);
+        var selectedUser = userData.Find(u => u.Name == selectedUserName);
+
+
+        if (selectedUser != null)
         {
-            Console.Clear();
-
-            Console.WriteLine("Welcome to Spotivy!");
-            Console.WriteLine("Select your user:");
-
-            for (var i = 0; i < userData.Count; i++)
-            {
-                if (i == currentIndex)
-                {
-                    Console.BackgroundColor = ConsoleColor.Gray;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                }
-
-                Console.WriteLine($"- {userData[i].Name}");
-
-                Console.ResetColor();
-            }
-
-            var key = Console.ReadKey(true).Key;
-
-            switch (key)
-            {
-                case ConsoleKey.UpArrow:
-                    currentIndex = (currentIndex - 1 + userData.Count) % userData.Count;
-                    continue;
-                case ConsoleKey.DownArrow:
-                    currentIndex = (currentIndex + 1) % userData.Count;
-                    continue;
-                case ConsoleKey.Enter:
-                    Console.WriteLine($"Welcome, {userData[currentIndex].Name}!");
-                    break;
-            }
-
-           return new Client(userData[currentIndex]);
+            Console.WriteLine($"Welcome, {selectedUserName}!");
+            Utility.PressAnyKeyToContinue();
+            return new Client(selectedUser);
         }
 
+        Console.WriteLine("User not found.");
+        Environment.Exit(1);
+
+        return new Client(selectedUser);
     }
 
     private static void MainMenu()
     {
-        Console.WriteLine("Main Menu:");
-        Console.WriteLine("1. Create Playlist");
-        Console.WriteLine("2. Add Song to Playlist");
-        Console.WriteLine("3. Play Playlist");
-        Console.WriteLine("4. View Friends");
-        Console.WriteLine("5. Add Friend");
-        Console.WriteLine("6. Remove Friend");
-        Console.WriteLine("7. View Friend Playlists");
-        Console.WriteLine("8. View Albums");
-        Console.WriteLine("9. View Artists");
-        Console.WriteLine("0. Exit");
 
-        var key = Console.ReadKey(true).Key;
 
-        // switch (key)
-        // {
-        //     case ConsoleKey.D1:
-        //     case ConsoleKey.NumPad1:
-        //         CreatePlaylist();
-        //         break;
-        //     case ConsoleKey.D2:
-        //     case ConsoleKey.NumPad2:
-        //         AddSongToPlaylist();
-        //         break;
-        //     case ConsoleKey.D3:
-        //     case ConsoleKey.NumPad3:
-        //         PlayPlaylist();
-        //         break;
-        //     case ConsoleKey.D4:
-        //     case ConsoleKey.NumPad4:
-        //         ViewFriends();
-        //         break;
-        //     case ConsoleKey.D5:
-        //     case ConsoleKey.NumPad5:
-        //         AddFriend();
-        //         break;
-        //     case ConsoleKey.D6:
-        //     case ConsoleKey.NumPad6:
-        //         RemoveFriend();
-        //         break;
-        //     case ConsoleKey.D7:
-        //     case ConsoleKey.NumPad7:
-        //         ViewFriendPlaylists();
-        //         break;
-        //     case ConsoleKey.D8:
-        //     case ConsoleKey.NumPad8:
-        //         ViewAlbums();
-        //         break;
-        //     case ConsoleKey.D9:
-        //     case ConsoleKey.NumPad9:
-        //         ViewArtist();
-        //         break;
-        //     case ConsoleKey.D0:
-        //     case ConsoleKey.NumPad0:
-        //         Console.WriteLine("Exiting...");
-        //         *//*exiting*//*
-        //         break;
-        //     default:
-        //         Console.WriteLine("Invalid input try again.");
-        //         break;
-        // }
+        var selectedMenu = Utility.SelectFromList(["Playlist Menu", "Friend Menu", "Queue Menu", "Exit"]);
 
+        Console.Clear();
+        switch (selectedMenu)
+        {
+            case "Playlist Menu":
+                PlaylistMenu();
+                break;
+            case "Friend Menu":
+                FriendMenu();
+                break;
+            case "Queue Menu":
+                QueueMenu();
+                break;
+            case "Exit":
+                Environment.Exit(0);
+                break;
+            default:
+                Console.WriteLine("Invalid input try again.");
+                break;
+        }
     }
+
+    private static void PlaylistMenu()
+    {
+
+        var selectedOption = Utility.SelectFromList([
+            "Create Playlist", "Add Song to Playlist", "Show Playlists", "Back to Main Menu"
+        ]);
+
+        Console.Clear();
+        switch (selectedOption)
+        {
+            case "Create Playlist":
+                Client.MainUser.CreatePlaylist();
+                break;
+
+            case "Add Song to Playlist":
+                Client.MainUser.AddSongToPlaylist();
+                break;
+
+            case "Show Playlists":
+                Client.MainUser.ShowPlaylists();
+                break;
+
+            case "Back to Main Menu":
+                MainMenu();
+                break;
+
+            default:
+                Console.WriteLine("Invalid input try again.");
+                break;
+        }
+    }
+
+    private static void FriendMenu()
+    {
+
+        var selectedOption = Utility.SelectFromList([
+            "View Friends", "Add Friend", "Remove Friend", "View Friend Playlists", "Back to Main Menu"
+        ]);
+
+        Console.Clear();
+        switch (selectedOption)
+        {
+            case "View Friends":
+                Client.MainUser.ViewFriends();
+                break;
+
+            case "Add Friend":
+                Client.MainUser.AddFriend();
+                break;
+
+            case "Remove Friend":
+                Client.MainUser.RemoveFriend();
+                break;
+
+            case "View Friend Playlists":
+                Client.MainUser.ViewFriendPlaylists();
+                break;
+
+            case "Back to Main Menu":
+                MainMenu();
+                break;
+
+            default:
+                Console.WriteLine("Invalid input try again.");
+                break;
+        }
+    }
+    private static void QueueMenu()
+    {
+
+        var selectedOption = Utility.SelectFromList(["Show Queue","Skip song",
+            "Add Song to Queue", "Remove Song from Queue", "Play Queue", "Add Playlist to Queue","Back to Main Menu"
+        ]);
+
+        Console.Clear();
+        switch (selectedOption)
+        {
+            case "Show Queue":
+                Client.ShowQueue();
+                break;
+
+            case "Skip song":
+                Client.SkipSong();
+                break;
+
+            case "Add Song to Queue":
+                Client.AddSongToQueue();
+                break;
+
+            case "Remove Song from Queue":
+                Client.RemoveFromQueue();
+                break;
+
+            case "Play Queue":
+                Client.PlayQueue();
+                break;
+
+            case "Add Playlist to Queue":
+                Client.AddPlaylistToQueue();
+                break;
+
+            case "Back to Main Menu":
+                MainMenu();
+                break;
+
+            default:
+                Console.WriteLine("Invalid input try again.");
+                break;
+        }
+    }
+
+
+
+
+
+
+
+
+
 }

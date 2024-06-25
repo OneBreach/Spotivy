@@ -1,83 +1,132 @@
-using System;
-using System.Collections.Generic;
-
+using System.Diagnostics;
 namespace Spotivy
 {
     public class Client(User mainUser)
     {
         public User MainUser { get; set; } = mainUser;
 
-        public void CreatePlaylist(string name, List<Song> songs)
-        {
-            MainUser.CreatePlaylist(name, songs);
-        }
+        private List<Song> Queue { get; set; } = [];
 
-        public void AddSongToPlaylist(string playlistName, Song song)
-        {
-            MainUser.AddSongToPlaylist(playlistName, song);
-        }
 
-        public void PlayPlaylist(string playlistName)
+        // Show the Queue List
+        public void ShowQueue()
         {
-            MainUser.PlayPlaylist(playlistName);
-        }
-
-        public void ViewFriends()
-        {
-            MainUser.ViewFriends();
-        }
-
-        public void AddFriend(User friend)
-        {
-            MainUser.AddFriend(friend);
-        }
-
-        public void RemoveFriend(User friend)
-        {
-            MainUser.RemoveFriend(friend);
-        }
-
-        public void ViewFriendPlaylists(User friend)
-        {
-            MainUser.ViewFriendPlaylists(friend);
-        }
-
-        public void ViewAlbums()
-        {
-            var albums = GetAlbums();
-            Console.WriteLine("Albums:");
-            foreach (var album in albums)
+            if (Queue.Count == 0)
             {
-                Console.WriteLine($"- {album.Title}");
+                Console.WriteLine("Queue is empty.");
+                Utility.PressAnyKeyToContinue();
+                return;
             }
-        }
 
-        public void ViewArtists()
-        {
-            var artists = GetArtists();
-            Console.WriteLine("Artists:");
-            foreach (var artist in artists)
+            Console.WriteLine("Queue:");
+            for (var i = 0; i < Queue.Count; i++)
             {
-                Console.WriteLine($"- {artist.Name}");
+                Console.WriteLine($"{i + 1}. {Queue[i].Title} by {string.Join(", ", Queue[i].Artists)}");
             }
+
+            Utility.PressAnyKeyToContinue();
         }
 
-        private List<Album> GetAlbums()
+        public void SkipSong()
         {
-            return
-            [
-                new Album("Album1", []),
-                new Album("Album2", [])
-            ];
+            if (Queue.Count == 0)
+            {
+                Console.WriteLine("Queue is empty.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
+
+            var songToSkip = Queue[0];
+            Console.WriteLine($"Skipping '{songToSkip.Title}' by {string.Join(", ", songToSkip.Artists)}.");
+            Queue.RemoveAt(0);
+            Utility.PressAnyKeyToContinue();
         }
 
-        private List<Artist> GetArtists()
+        // Add a song to the Queue
+        public void AddSongToQueue()
         {
-            return
-            [
-                new Artist("Killer Kamal"),
-                new Artist("Pietje Bel")
-            ];
+            Console.WriteLine("Select a song to add to the queue:");
+            var song = Utility.SelectFromList(MainUser.Playlists.SelectMany(p => p.Songs)
+                .Select(s => s.Title).ToList());
+            var songToAdd = MainUser.Playlists.SelectMany(p => p.Songs).ToList().Find(s => s.Title == song);
+
+            if (songToAdd == null)
+            {
+                Console.WriteLine($"Song '{song}' not found.");
+                Utility.PressAnyKeyToContinue();
+
+                return;
+            }
+
+            Console.WriteLine($"Adding '{songToAdd.Title}' to the queue.");
+            Queue.Add(songToAdd);
+            Utility.PressAnyKeyToContinue();
         }
+
+        // Remove songs from the Queue
+        public void RemoveFromQueue()
+        {
+            var songToRemove = Utility.SelectMultipleFromList(Queue.Select(s => s.Title).ToList());
+            var songToRemoveFromQueue = Queue.Find(s => songToRemove.Contains(s.Title));
+
+
+            if (songToRemoveFromQueue == null)
+            {
+                Console.WriteLine($"Song '{songToRemove}' not found.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
+
+            Console.WriteLine($"Removing '{songToRemoveFromQueue.Title}' from the queue.");
+            Queue.Remove(songToRemoveFromQueue);
+            Utility.PressAnyKeyToContinue();
+        }
+
+        // Play the Queue
+        public void PlayQueue()
+        {
+            Console.WriteLine("Playing queue:");
+            if (Queue.Count == 0)
+            {
+                Console.WriteLine("Queue is empty.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
+
+            foreach (var song in Queue)
+            {
+                Console.WriteLine($"- {song.Title} by {string.Join(", ", song.Artists)}");
+            }
+
+            Utility.PressAnyKeyToContinue();
+
+        }
+
+        public void AddPlaylistToQueue()
+        {
+            Console.WriteLine("Select a playlist to add to the queue:");
+            var playlist = Utility.SelectFromList(MainUser.Playlists.Select(p => p.Name).ToList());
+            var playlistToAdd = MainUser.Playlists.Find(p => p.Name == playlist);
+
+            if (playlistToAdd == null)
+            {
+                Console.WriteLine($"Playlist '{playlist}' not found.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
+
+
+            Console.WriteLine("Playlist added to the queue.");
+            Console.WriteLine($"Playing playlist '{playlistToAdd.Name}':");
+            foreach (var song in playlistToAdd.Songs)
+            {
+                Console.WriteLine($"- {song.Title} by {string.Join(", ", song.Artists)}");
+                Queue.Add(song);
+            }
+
+            Utility.PressAnyKeyToContinue();
+        }
+
+
     }
 }

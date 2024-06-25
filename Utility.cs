@@ -59,9 +59,9 @@ public static class Utility
 
                 if (selectedItems.Contains(options[i]))
                 {
-                    Console.BackgroundColor = ConsoleColor.Black;
-                    Console.ForegroundColor = ConsoleColor.White;
+                    Console.BackgroundColor = ConsoleColor.DarkGray;
                 }
+
                 Console.WriteLine($"- {options[i]} {(selectedItems.Contains(options[i]) ? "(selected)" : "")}");
 
                 Console.ResetColor();
@@ -94,5 +94,11 @@ public static class Utility
                     return selectedItems;
             }
         }
+    }
+
+    public static void PressAnyKeyToContinue()
+    {
+        Console.WriteLine("Press any key to continue.");
+        Console.ReadKey();
     }
 }

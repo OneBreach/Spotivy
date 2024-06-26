@@ -1,4 +1,3 @@
-using System.Diagnostics;
 namespace Spotivy
 {
     public class Client(User mainUser)

@@ -10,7 +10,7 @@ namespace Spotivy
 
         public string Name { get; set; } = name;
         public List<Playlist> Playlists { get; set; } = playlists;
-        public List<User> Friends { get; set; } = friends;
+        private List<User> Friends { get; set; } = friends;
 
 
         public void ShowPlaylists()
@@ -60,6 +60,12 @@ namespace Spotivy
         public void AddSongToPlaylist()
         {
             Console.Clear();
+            if (Playlists.Count == 0)
+            {
+                Console.WriteLine("You have no playlists.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
             Console.WriteLine("Select a playlist:");
             var playlists = Playlists.Select(p => p.Name).ToList();
             var playlistSelectedName = Utility.SelectFromList(playlists);
@@ -169,6 +175,13 @@ namespace Spotivy
 
         public void ViewFriends()
         {
+            Console.Clear();
+            if (Friends.Count == 0)
+            {
+                Console.WriteLine("You have no friends.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
             Console.WriteLine("Friends:");
             foreach (var friend in Friends)
             {
@@ -240,6 +253,12 @@ namespace Spotivy
         public void ViewFriendPlaylists()
         {
             Console.Clear();
+            if (Friends.Count == 0)
+            {
+                Console.WriteLine("You have no friends.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
             Console.WriteLine("Select a friend:");
             var friends = Friends.Select(f => f.Name).ToList();
             var friendName = Utility.SelectFromList(friends);

@@ -3,7 +3,7 @@
 internal static class Program
 {
     public static Database Database { get; private set; } = new Database();
-    public static Client Client { get; private set; } = null!;
+    private static Client Client { get; set; } = null!;
 
     public static void Main(string[] args)
     {

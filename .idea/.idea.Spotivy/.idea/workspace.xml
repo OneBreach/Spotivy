@@ -9,8 +9,12 @@
   <component name="ChangeListManager">
     <list default="true" id="86217c46-0b3d-4f2b-8de4-01f980d1fe14" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Spotivy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Spotivy/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Artist.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Artist.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Playlist.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Playlist.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Song.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Song.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/User.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +111,7 @@
       <workItem from="1718785586828" duration="6000" />
       <workItem from="1718785611033" duration="235000" />
       <workItem from="1718786808742" duration="4828000" />
-      <workItem from="1719390109524" duration="3004000" />
+      <workItem from="1719390109524" duration="3265000" />
     </task>
     <servers />
   </component>

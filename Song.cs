@@ -8,4 +8,5 @@ public class Song(string title, string[] artists, string genre, int duration)
     public int Duration { get; set; } = duration;
 
 
+
 }

@@ -1,9 +1,11 @@
 namespace Spotivy;
 
-public class Artist(string name)
+public abstract class Artist(string name)
 {
-    public string Name { get; set; } = name;
-    public List<Album> Albums { get; set; } = [];
-    public List<Song> Songs { get; set; } = [];
+    private string Name { get; set; } = name;
+    private List<Album> Albums { get; set; } = [];
+    private List<Song> Songs { get; set; } = [];
+
+
 
 }

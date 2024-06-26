@@ -11,8 +11,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Spotivy/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Spotivy/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Client.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Client.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/User.cs" beforeDir="false" afterPath="$PROJECT_DIR$/User.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo.plantuml" beforeDir="false" afterPath="$PROJECT_DIR$/demo.plantuml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +54,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "development",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/Jorra/Desktop",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -108,7 +107,7 @@
       <workItem from="1718785586828" duration="6000" />
       <workItem from="1718785611033" duration="235000" />
       <workItem from="1718786808742" duration="4828000" />
-      <workItem from="1719390109524" duration="2269000" />
+      <workItem from="1719390109524" duration="3004000" />
     </task>
     <servers />
   </component>

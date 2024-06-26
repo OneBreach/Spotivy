@@ -59,6 +59,8 @@ internal static class Program
                 break;
             case "Exit":
                 Environment.Exit(0);
+
+
                 break;
             default:
                 Console.WriteLine("Invalid input try again.");

@@ -73,7 +73,6 @@ namespace Spotivy
                 {
                     var selectedSongsNames = Utility.SelectMultipleFromList(searchResult.Select(s => s.Title).ToList());
                     var selectedSongs = searchResult.Where(s => selectedSongsNames.Contains(s.Title)).ToList();
-                    Console.WriteLine(selectedSongs);
 
                     foreach (var song in selectedSongs)
                     {
@@ -95,26 +94,6 @@ namespace Spotivy
         // Remove songs from the Queue
         public void RemoveFromQueue()
         {
-            var songToRemove = Utility.SelectMultipleFromList(Queue.Select(s => s.Title).ToList());
-            var songToRemoveFromQueue = Queue.Find(s => songToRemove.Contains(s.Title));
-
-
-            if (songToRemoveFromQueue == null)
-            {
-                Console.WriteLine($"Song '{songToRemove}' not found.");
-                Utility.PressAnyKeyToContinue();
-                return;
-            }
-
-            Console.WriteLine($"Removing '{songToRemoveFromQueue.Title}' from the queue.");
-            Queue.Remove(songToRemoveFromQueue);
-            Utility.PressAnyKeyToContinue();
-        }
-
-        // Play the Queue
-        public void PlayQueue()
-        {
-            Console.WriteLine("Playing queue:");
             if (Queue.Count == 0)
             {
                 Console.WriteLine("Queue is empty.");
@@ -122,6 +101,36 @@ namespace Spotivy
                 return;
             }
 
+            var songToRemove = Utility.SelectMultipleFromList(Queue.Select(s => s.Title).ToList());
+            var songToRemoveFromQueue = Queue.FindAll(s => songToRemove.Contains(s.Title)).ToList();
+
+
+            if (songToRemoveFromQueue.Count == 0)
+            {
+                Console.WriteLine($"Song '{songToRemove}' not found.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
+
+            foreach (var song in songToRemoveFromQueue)
+            {
+                Queue.Remove(song);
+                Console.WriteLine($"Song '{song.Title}' removed from the queue.");
+            }
+            Utility.PressAnyKeyToContinue();
+        }
+
+        // Play the Queue
+        public void PlayQueue()
+        {
+            if (Queue.Count == 0)
+            {
+                Console.WriteLine("Queue is empty.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
+
+            Console.WriteLine("Playing queue:");
             foreach (var song in Queue)
             {
                 Console.WriteLine($"- {song.Title} by {string.Join(", ", song.Artists)}");
@@ -133,6 +142,13 @@ namespace Spotivy
 
         public void AddPlaylistToQueue()
         {
+            if (MainUser.Playlists.Count == 0)
+            {
+                Console.WriteLine("You have no playlists.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
+
             Console.WriteLine("Select a playlist to add to the queue:");
             var playlist = Utility.SelectFromList(MainUser.Playlists.Select(p => p.Name).ToList());
             var playlistToAdd = MainUser.Playlists.Find(p => p.Name == playlist);

@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 
 namespace Spotivy
 {
@@ -20,6 +18,13 @@ namespace Spotivy
             Console.WriteLine("Playlists:");
 
             var playlistNames = Playlists.Select(p => p.Name).ToList();
+            if (playlistNames.Count == 0)
+            {
+                Console.WriteLine("You have no playlists.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
+
             playlistNames.Insert(playlistNames.Count, "Exit");
 
             var selectedPlaylistName = Utility.SelectFromList(playlistNames);
@@ -33,6 +38,12 @@ namespace Spotivy
 
             if (selectedPlaylist != null)
             {
+                if (selectedPlaylist.Songs.Count == 0)
+                {
+                    Console.WriteLine("Playlist is empty.");
+                    Utility.PressAnyKeyToContinue();
+                    return;
+                }
                 selectedPlaylist.Songs.ForEach(s =>
                     Console.WriteLine($"- {s.Title} by {string.Join(", ", s.Artists)}"));
             }
@@ -80,7 +91,7 @@ namespace Spotivy
                 }
 
                 var searchResult = Database.GetSongs()
-                    .FindAll(s => s.Title.Contains(searchQuery) || s.Artists.Contains(searchQuery));
+                    .FindAll(s => searchQuery != null && (s.Title.Contains(searchQuery) || s.Artists.Contains(searchQuery)));
 
 
                 if (searchResult.Count != 0)
@@ -132,8 +143,14 @@ namespace Spotivy
         public void RemovePlaylist()
         {
             Console.Clear();
-            Console.WriteLine("Select a playlist to remove:");
             var playlistNames = Playlists.Select(p => p.Name).ToList();
+            if (playlistNames.Count == 0)
+            {
+                Console.WriteLine("You have no playlists.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
+            Console.WriteLine("Select a playlist to remove:");
             var playlistName = Utility.SelectFromList(playlistNames);
             var playlist = Playlists.Find(p => p.Name == playlistName);
 
@@ -164,9 +181,16 @@ namespace Spotivy
         public void AddFriend()
         {
             Console.Clear();
-            Console.WriteLine("Select a friend to add");
             var friends = Database.GetPeople().Select(u => u.Name).ToList().Except(Friends.Select(f => f.Name))
-                .ToList();
+                .ToList().Except(new List<string> {Name}).ToList();
+            if(friends.Count == 0)
+            {
+                Console.WriteLine("No friends to add.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
+            Console.WriteLine("Select a friend to add");
+
             var friendName = Utility.SelectFromList(friends);
             var friend = Database.GetPeople().Find(u => u.Name == friendName);
 
@@ -187,6 +211,14 @@ namespace Spotivy
         public void RemoveFriend()
         {
             Console.Clear();
+
+            if (Friends.Count == 0)
+            {
+                Console.WriteLine("You have no friends.");
+                Utility.PressAnyKeyToContinue();
+                return;
+            }
+
             Console.WriteLine("Select a friend to remove:");
             var friends = Friends.Select(f => f.Name).ToList();
             var friendName = Utility.SelectFromList(friends);

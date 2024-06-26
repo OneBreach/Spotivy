@@ -45,22 +45,51 @@ namespace Spotivy
         // Add a song to the Queue
         public void AddSongToQueue()
         {
-            Console.WriteLine("Select a song to add to the queue:");
-            var song = Utility.SelectFromList(MainUser.Playlists.SelectMany(p => p.Songs)
-                .Select(s => s.Title).ToList());
-            var songToAdd = MainUser.Playlists.SelectMany(p => p.Songs).ToList().Find(s => s.Title == song);
 
-            if (songToAdd == null)
+            Console.Clear();
+
+            while (true)
             {
-                Console.WriteLine($"Song '{song}' not found.");
-                Utility.PressAnyKeyToContinue();
+                Console.WriteLine("Search for a song:");
+                Console.WriteLine("To leave type 'exit'.");
+                var searchQuery = Console.ReadLine();
 
-                return;
+                if (searchQuery == "exit")
+                {
+                    break;
+                }
+
+                if (searchQuery == "")
+                {
+                    Console.WriteLine("Please enter a search query.");
+                    continue;
+                }
+
+                var searchResult = Database.GetSongs()
+                    .FindAll(s => searchQuery != null && (s.Title.Contains(searchQuery) || s.Artists.Contains(searchQuery)));
+
+
+                if (searchResult.Count != 0)
+                {
+                    var selectedSongsNames = Utility.SelectMultipleFromList(searchResult.Select(s => s.Title).ToList());
+                    var selectedSongs = searchResult.Where(s => selectedSongsNames.Contains(s.Title)).ToList();
+                    Console.WriteLine(selectedSongs);
+
+                    foreach (var song in selectedSongs)
+                    {
+                        Queue.Add(song);
+                        Console.WriteLine($"Song '{song.Title}' added to playlist '{song.Title}'.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine($"Song '{searchQuery}' not found.");
+                }
             }
 
-            Console.WriteLine($"Adding '{songToAdd.Title}' to the queue.");
-            Queue.Add(songToAdd);
             Utility.PressAnyKeyToContinue();
+
+
         }
 
         // Remove songs from the Queue

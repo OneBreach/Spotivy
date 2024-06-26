@@ -1,68 +1,102 @@
-PlantUML
 @startuml
-class Client {
-    - mainUser: User
-    + CreatePlaylist(name: string)
-    + AddSongToPlaylist(playlistName: string, song: Song)
-    + PlayPlaylist(playlistName: string)
-    + ViewFriends()
-    + AddFriend(friend: User)
-    + RemoveFriend(friend: User)
-    + ViewFriendPlaylists(friend: User)
-    + ViewAlbums()
-    + ViewArtists()
+
+package Spotivy {
+
+    class Program {
+        + Database Database
+        + Client Client
+        + Main(string[] args): void
+        - StartClient(): Client
+        - MainMenu(): void
+        - PlaylistMenu(): void
+        - FriendMenu(): void
+        - QueueMenu(): void
+    }
+
+    class Client {
+        + User MainUser
+        - List<Song> Queue
+        + ShowQueue(): void
+        + SkipSong(): void
+        + AddSongToQueue(): void
+        + RemoveFromQueue(): void
+        + PlayQueue(): void
+        + AddPlaylistToQueue(): void
+    }
+
+    class Database {
+        + GetPeople(): List<User>
+        + GetSongs(): List<Song>
+        + GetAlbums(): List<Album>
+    }
+
+    class Playlist {
+        + String Name
+        + List<Song> Songs
+        + AddSong(Song song): void
+        + RemoveSong(Song song): void
+        + Play(): void
+        + Show(): void
+    }
+
+    class Song {
+        + String Title
+        + String[] Artists
+        + String Genre
+        + int Duration
+        + Play(): void
+        + Stop(): void
+        + Skip(): void
+    }
+
+    class User {
+        + String Name
+        + List<Playlist> Playlists
+        + List<User> Friends
+        + ShowPlaylists(): void
+        + AddSongToPlaylist(): void
+        + CreatePlaylist(): void
+        + RemovePlaylist(): void
+        + ViewFriends(): void
+        + AddFriend(): void
+        + RemoveFriend(): void
+        + ViewFriendPlaylists(): void
+    }
+
+    class Utility {
+        + SelectFromList(List<String> options): String
+        + SelectMultipleFromList(List<String> options): List<String>
+        + PressAnyKeyToContinue(): void
+    }
+
+    class Artist {
+        + String Name
+        + List<Album> Albums
+        + List<Song> Songs
+        + ViewWorks(): void
+    }
+
+    class Album {
+        + String Title
+        + List<Song> Songs
+        + List<Artist> Artists
+    }
+
+    Program --> Database : uses
+    Program --> Client : uses
+    Client --> User : uses
+    Client --> Song : uses
+    Client --> Database : uses
+    User --> Playlist : uses
+    User --> User : uses
+    Playlist --> Song : uses
+    Artist --> Album : uses
+    Artist --> Song : uses
+    Album --> Song : uses
+    Album --> Artist : uses
+    Database --> User : contains
+    Database --> Song : contains
+    Database --> Album : contains
 }
 
-class User {
-    - name: string
-    - playlists: List<Playlist>
-    - friends: List<User>
-    + CreatePlaylist(name: string)
-    + AddSongToPlaylist(playlistName: string, song: Song)
-    + PlayPlaylist(playlistName: string)
-    + ViewFriends()
-    + AddFriend(friend: User)
-    + RemoveFriend(friend: User)
-    + ViewFriendPlaylists(friend: User)
-}
-
-class Playlist {
-    - name: string
-    - songs: List<Song>
-    + AddSong(song: Song)
-    + RemoveSong(song: Song)
-    + Play()
-}
-
-class Song {
-    - title: string
-    - artists: string[]
-    - genre: string
-    + Play()
-    + Stop()
-    + Skip()
-}
-
-class Album {
-    - title: string
-    - songs: List<Song>
-    - artists: List<Artist>
-    + Play()
-}
-
-class Artist {
-    - name: string
-    - albums: List<Album>
-    - songs: List<Song>
-    + ViewWorks()
-}
-
-Client --> User : mainUser
-User --> Playlist : playlists
-User --> User : friends
-Playlist --> Song : songs
-Album --> Song : songs
-Album --> Artist : artists
-Artist --> Album : albums
-Artist --> Song : songs
 @enduml

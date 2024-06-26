@@ -70,7 +70,7 @@ internal static class Program
     {
 
         var selectedOption = Utility.SelectFromList([
-            "Create Playlist", "Add Song to Playlist", "Show Playlists", "Back to Main Menu"
+            "Create Playlist", "Add Song to Playlist", "Show Playlists","Remove Playlist", "Back to Main Menu"
         ]);
 
         Console.Clear();
@@ -86,6 +86,10 @@ internal static class Program
 
             case "Show Playlists":
                 Client.MainUser.ShowPlaylists();
+                break;
+
+            case "Remove Playlist":
+                Client.MainUser.RemovePlaylist();
                 break;
 
             case "Back to Main Menu":
